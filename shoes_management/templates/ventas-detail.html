@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} {{super}} Items venta {{id}} {% endblock %}
+
+{% block content %}
+  <h3>Venta #{{id}} el {{date}}</h3>
+
+  {% if items %}
+    <table class="table table-hover">
+      <tr>
+        <th>Marca</th><th>Modelo</th><th>estilo</th><th>Audiencia</th><th>Talla</th><th>Precio</th>
+      </tr>
+      {% for item in items %}
+        <tr id='it-{{item.id}}'>
+          <td>{{item.item.shoe.modelBrand.brand.name}}</td>
+          <td>{{item.item.shoe.modelBrand.model}}</td>
+          <td>{{item.item.shoe.style}}</td>
+          <td>{{item.item.shoe.genre}}</td>
+          <td>{{item.item.size}}</td>
+          <td>{{item.item.price}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h1>Ocurrio algun problema</h1>
+  {% endif %}
+{% endblock %}

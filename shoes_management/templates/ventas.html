@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} {{super}} Ventas {% endblock %}
+
+{% block content %}
+  <h1>Ventas</h1>
+
+  {% if bills %}
+    <table class="table table-hover">
+      <tr>
+        <th>Comprador</th><th>Vendedor</th><th>Fecha</th><th>Ver mas</th>
+      </tr>
+      {% for item in bills %}
+
+          <tr id='it-{{item.id}}'>
+            <td>{{item.buyer}}</td>
+            <td>{{item.seller.username}}</td>
+            <td>{{item.sold_date}}</td>
+            <td><a href="{% url 'bill-detail' item.id %}">+</a></td>
+          </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h1>There are not bills to show</h1>
+  {% endif %}
+{% endblock %}
